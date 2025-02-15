@@ -92,4 +92,33 @@ def get_tasks():
         print(tasks[key])
 
 
-menu()
+# Performance Tracking
+
+subjects = {}
+
+def add_subject():
+    subject = input("Please enter the name of the new subject you would like to add: ")
+    if subject in subjects:
+        print("This subject already exists.")
+    else:
+        subjects[subject] = []
+        print(f"""Added "{subject}" to subjects.""")
+    
+def add_score():
+    print("Subjects:")
+    for key in subjects:
+        print(key)
+    subject = input("Please enter the subject you want to add a score to: ")
+    if subject in subjects:
+        while True:
+            try:
+                score = int(input("Enter your score: "))
+                subjects[subject].append(score)
+                break
+            except ValueError:
+                print("Please enter a valid score...")
+    else:
+        print("Subject does not exist.")
+
+def show_scores():
+    print(subjects)
