@@ -13,8 +13,8 @@ tasks = {
     3 : [],
 }
 
-def menu():
-    print("Welcome to the Error-Free Calculator! Choose an option:")
+def task_menu():
+    print("Welcome to the Task Prioritization App! Choose an option:")
     while True:
         try:
             user_choice = int(input("1. Add task \n2. Remove task \n3. See tasks \n4. Exit \n> "))
@@ -96,6 +96,26 @@ def get_tasks():
 
 subjects = {}
 
+def score_menu():
+    print("Welcome to the Performance Tracking App! Choose an option:")
+    while True:
+        try:
+            user_choice = int(input("1. Add a subject \n2. Add grade \n3. Show grades \n4. Show average \n5. Exit \n> "))
+            if user_choice == 1:
+                add_subject()  
+            elif user_choice == 2:
+                add_score()  
+            elif user_choice == 3:
+                show_scores()
+            elif user_choice == 4:
+                show_average()
+            elif user_choice == 5:
+                break
+            else:
+                print("Invalid input. Please enter a number from the menu...")
+        except ValueError:
+            print("Invalid input. Please enter a number from the menu...")
+
 def add_subject():
     subject = input("Please enter the name of the new subject you would like to add: ")
     if subject in subjects:
@@ -121,4 +141,41 @@ def add_score():
         print("Subject does not exist.")
 
 def show_scores():
-    print(subjects)
+    print("Scores")
+    for key in subjects:
+        print(f"{key} : {subjects[key]}")
+
+def show_average():
+    avg = 0
+    num_of_subjects = 0
+    for key in subjects:
+        if subjects[key]:
+            avg += sum(subjects[key])/len(subjects[key])
+            num_of_subjects += 1
+    avg /= num_of_subjects
+    print(f"Total Average: {avg}")
+    print("Average per subject: ")
+    for key in subjects:
+        if subjects[key]:
+            print(f"{key} : {sum(subjects[key])/len(subjects[key])}")
+        else:
+            print(f"{key} : No grades")
+
+
+def main_menu():
+    while True:
+        print("Welcome to the main menu! Choose an option:")
+        try:
+            user_choice = int(input("1. Task Prioritization App \n2. Performance Tracking App \n3. Exit \n> "))
+            if user_choice == 1:
+                task_menu()  
+            elif user_choice == 2:
+                score_menu() 
+            elif user_choice == 3:
+                break
+            else:
+                print("Invalid input. Please enter a number from the menu...")
+        except ValueError:
+            print("Invalid input. Please enter a number from the menu...")
+
+main_menu()
