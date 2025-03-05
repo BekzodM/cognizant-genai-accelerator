@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import scipy.cluster.hierarchy as sch
 
+from sklearn.cluster import AgglomerativeClustering
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -49,4 +51,16 @@ plt.scatter(X_pca[:, 0], X_pca[:, 1], c=clusters, cmap='viridis', edgecolors='k'
 plt.xlabel("Principal Component 1")
 plt.ylabel("Principal Component 2")
 plt.title("K-Means Clustering (PCA Reduced to 2D)")
+plt.show()
+
+
+plt.figure(figsize=(10, 5))
+
+# Create the dendrogram
+dendrogram = sch.dendrogram(sch.linkage(X, method="ward"))
+
+# Add labels
+plt.title("Dendrogram for Hierarchical Clustering")
+plt.xlabel("Data Points")
+plt.ylabel("Euclidean Distance")
 plt.show()
