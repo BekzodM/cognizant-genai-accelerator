@@ -59,8 +59,10 @@ plt.figure(figsize=(10, 5))
 # Create the dendrogram
 dendrogram = sch.dendrogram(sch.linkage(X, method="ward"))
 
-# Add labels
 plt.title("Dendrogram for Hierarchical Clustering")
 plt.xlabel("Data Points")
 plt.ylabel("Euclidean Distance")
 plt.show()
+
+hc = AgglomerativeClustering(n_clusters=3, affinity="euclidean", linkage="ward")
+clusters = hc.fit_predict(X)
