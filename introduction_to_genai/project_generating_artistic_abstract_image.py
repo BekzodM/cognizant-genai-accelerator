@@ -3,7 +3,6 @@ import tensorflow as tf
 import numpy as np
 from matplotlib import pyplot as plt
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
-from PIL import UnidentifiedImageError
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, Dense, Flatten, Reshape, LeakyReLU, Dropout, UpSampling2D
 from tensorflow.keras.optimizers import Adam
